@@ -152,7 +152,7 @@ const Nftdrop = ({collection}: Props) => {
 
             {
               loading&& <img className='h-36  w-80 object-contain'
-               src="https://media3.giphy.com/media/WiIuC6fAOoXD2/200w.webp?cid=ecf05e47c45pk1hi68krip9mcgxmgskwmbouiobe5x9fti3z&rid=200w.webp&ct=g" alt="" />
+               src="https://miro.medium.com/max/1400/1*CsJ05WEGfunYMLGfsT2sXA.gif" alt="" />
             }
 
 
