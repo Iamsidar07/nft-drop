@@ -10,7 +10,7 @@ interface Props{
   collection:Collection,
 }
 const Nftdrop = ({collection}: Props) => {
-  console.log("❤️",collection)
+  
   const connectWithMetamask = useMetamask()
   const disconnect = useDisconnect()
   const address = useAddress()
@@ -20,6 +20,7 @@ const Nftdrop = ({collection}: Props) => {
   const [loading,setLoading]=useState<boolean>(true)
   const [price,setPrice]=useState<String>()
   
+  console.log(nftDrop)
 
   useEffect(() => {
     const fetchPrice=async ()=>{
@@ -35,6 +36,7 @@ const Nftdrop = ({collection}: Props) => {
      setLoading(true)
      const claimed= await nftDrop.getAllClaimed();
      const total=await nftDrop.totalSupply();
+     console.log(claimedSupply,totalSupply)
      setClaimedSupply(claimed.length)
      setTotalSupply(total)
      setLoading(false)
@@ -88,9 +90,9 @@ const Nftdrop = ({collection}: Props) => {
     })
   }
   return (
-    <div className="flex  flex-col  justify-center  lg:grid lg:grid-cols-10 ">
+    <div className="flex  flex-col  justify-center  lg:grid lg:grid-cols-10  ">
      <Toaster position="bottom-center" />
-      <div className="  bg-[url('/images/left.png')] flex  w-full flex-col  items-center justify-center  py-1 lg:col-span-4 lg:min-h-screen">
+      <div className="  bg-[url('/images/left.png')] flex   w-full flex-col  items-center justify-center  py-1 lg:col-span-4 lg:min-h-screen">
         <div className="bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-xl  p-2">
           <img
             className="w-28 lg:h-72  rounded-xl object-cover lg:w-60"
@@ -151,7 +153,7 @@ const Nftdrop = ({collection}: Props) => {
             }
 
             {
-              loading&& <img className='h-36  w-80 object-contain'
+              loading&& <img className='h-10  w-80 object-contain'
                src="https://miro.medium.com/max/1400/1*CsJ05WEGfunYMLGfsT2sXA.gif" alt="" />
             }
 
@@ -159,7 +161,7 @@ const Nftdrop = ({collection}: Props) => {
           </div>
         </div>
         <div className="mt-10 lg:mt-2">
-          <button onClick={mintNft} disabled={loading||!address||claimedSupply==totalSupply?.toNumber()} className="w-full disabled:bg-gray-500 rounded-full h-10 lg:h-14 bg-gradient-to-r from-sky-500 to-indigo-500 py-2 text-xl font-extrabold text-white">
+          <button onClick={mintNft} disabled={loading||!address||claimedSupply==totalSupply?.toNumber()} className="w-full bg-orange-400  disabled:bg-gray-400  rounded-full h-10 lg:h-14  py-2 text-xl font-extrabold text-white">
            {
              loading?<>Loading</>
              :claimedSupply==totalSupply?.toNumber()?(
@@ -186,6 +188,7 @@ export const getServerSideProps: GetServerSideProps = async ({params}) => {
   title,
   description,
   nftCollectionName,
+  address,
   Image{
   asset
 },
